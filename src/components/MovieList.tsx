@@ -1,3 +1,4 @@
+import {useNavigation, StackActions} from '@react-navigation/native';
 import React from 'react';
 import {
   Image,
@@ -18,6 +19,7 @@ type Props = {
 
 const {width, height} = Dimensions.get('window');
 export default function MovieList({data, header: title}: Props) {
+  const navigation = useNavigation();
   let hideSeeAll = false;
   return (
     <View className="mb-8 space-y-4">
@@ -38,9 +40,10 @@ export default function MovieList({data, header: title}: Props) {
           return (
             <TouchableWithoutFeedback
               key={index}
-              // onPress={() => navigation.push('Movie', item)}
-              //
-            >
+              onPress={() => {
+                const stackActions = StackActions.push('Movie', {preson: '1'});
+                navigation.dispatch(stackActions);
+              }}>
               <View className="space-y-1 mr-4">
                 <Image
                   source={require('../assets/images/moviePoster2.png')}

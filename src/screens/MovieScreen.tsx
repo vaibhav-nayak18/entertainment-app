@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {View, ScrollView, Text, Image, Dimensions} from 'react-native';
+import Cast from '../components/Cast';
+import MovieList from '../components/MovieList';
 
 const {width, height} = Dimensions.get('window');
 
@@ -15,8 +17,35 @@ type MovieType = {
   }[];
 };
 
+const data = [
+  {
+    title: ' est proident. Nostrud officia pariatur ut officia. ',
+  },
+  {
+    title: ' est proident. Nostrud officia pariatur ut officia. ',
+  },
+  {
+    title: ' est proident. Nostrud officia pariatur ut officia. ',
+  },
+  {
+    title: ' est proident. Nostrud officia pariatur ut officia. ',
+  },
+];
+
+const obj: MovieType = {
+  genres: [{name: 'vaibhav'}],
+  overview:
+    'loremasdf asdjfiowe asdjfie ajdhf Loremipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.',
+  release_date: 'adkf ehidhf ekdo skda',
+  id: '1234567',
+  title: 'loerajd asdjkfj asdkfj fldd asdfsdaf',
+  status: 'asdfkjdi dfheje diij kjkj',
+  runtime: 'eueroafuafunv',
+};
+
 export default function MovieScreen() {
-  const [movie, setMovie] = useState<MovieType>([]);
+  const [movie, setMovie] = useState<MovieType>(obj);
+  const cast = [1, 2, 3, 4, 5];
   return (
     <ScrollView
       contentContainerStyle={{
@@ -32,14 +61,11 @@ export default function MovieScreen() {
             height: height * 0.55,
           }}
         />
-        <Text className="font-extrabold text-lg text-center mt-4">
-          {movie?.title}
-        </Text>
       </View>
 
-      <View style={{marginTop: -(height * 0.09)}} className="space-y-3">
+      <View className="space-y-3">
         {/* title */}
-        <Text className="text-white text-center text-3xl font-bold tracking-widest">
+        <Text className=" text-white text-center text-3xl font-bold tracking-widest">
           {movie?.title}
         </Text>
 
@@ -70,6 +96,9 @@ export default function MovieScreen() {
           {movie?.overview}
         </Text>
       </View>
+
+      <Cast cast={cast} />
+      <MovieList data={data} header="similar Movies" />
     </ScrollView>
   );
 }
